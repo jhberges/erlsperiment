@@ -1,3 +1,3 @@
 PROJECT = cowboy_testing
-DEPS = cowboy
+DEPS = cowboy jiffy
 include erlang.mk
