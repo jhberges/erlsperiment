@@ -1,0 +1,6 @@
+.erlang.mk.packages.v2
+.relx.config.swp
+_rel/
+deps/
+relx
+
