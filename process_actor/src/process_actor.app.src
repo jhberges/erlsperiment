@@ -1,0 +1,12 @@
+{application, process_actor, [
+	{description, "An actor doing processing linked to cowboy_testing"},
+	{vsn, "0.1.0"},
+	{modules, []},
+	{registered, []},
+	{applications, [
+		kernel,
+		stdlib
+	]},
+	{mod, {process_actor_app, []}},
+	{env, []}
+]}.
