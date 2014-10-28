@@ -1,3 +1,4 @@
 -sname cowboy_testing
--setcookie cowboy_testing
 -heart
+-setcookie cowboy_testing
+
