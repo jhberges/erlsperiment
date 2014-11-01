@@ -10,6 +10,7 @@ start_link() ->
 
 init([]) ->
 	io:format("supervisor link~n"),
-        Procs = [{proc_act, {process_actor_proc, proc_start_link,[]},permanent, brutal_kill,worker, [process_actor_proc]}],
+        Procs = [{proc_act, {process_actor_proc, start_link,[]},permanent, brutal_kill, worker, [process_actor_proc]}],
+	io:format("sup link: ~p~n", [Procs]),
         {ok, {{one_for_one, 1, 5}, Procs}}.
 
