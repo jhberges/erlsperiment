@@ -10,14 +10,18 @@ start_link() ->
 	%io:format("worker spawned ~p~n", [ModulePid]),
 	%global:register_name(process_actor_worker_pid, ModulePid),
 	%ModulePid.
-	gen_server:start_link(?MODULE, [], []).
+	{State,ServerPid} = gen_server:start_link(?MODULE, [], []),
+	io:format("ServerPid is ~p~n", [ServerPid]),
+	global:register_name(process_actor_server_pid, ServerPid),
+	{State, ServerPid}.
 
 init(_Args) -> 
 	io:format("proc-init~n"),
 	{ok, nothing}.
 
-handle_call(_alloc, _From, State) ->
-	{reply, [data, more_data],State}.
+handle_call(Data, _From, State) ->
+	io:format("handle_call ~p~n", [Data]),
+	{reply, {data, Data},State}.
 
 handle_cast(_Message, State) ->
 	{noreply, State}.

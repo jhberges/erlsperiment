@@ -11,11 +11,12 @@ content_types_provided(Req, State) ->
         {[{{<<"application">>, <<"json">>, '*'}, get_json}], Req, State}.
 
 process_item(ItemId) ->
-	case global:whereis_name(process_actor_worker_pid) of
+	case global:whereis_name(process_actor_server_pid) of
 		undefined ->
 			io:format("No proc!~n");
 		ProcessorPid ->
-			ProcessorPid ! ItemId
+			%ProcessorPid ! ItemId
+			gen_server:call(ProcessorPid, ItemId)
 	end.
 
 
@@ -24,7 +25,7 @@ get_json(Req, State) ->
                 undefined ->
                         {<<"UNDEFINED?">>, Req, State};
                 {ItemId, Req2} ->
-			process_item(ItemId),
-			{jiffy:encode({[{item, ItemId}]}), Req2, State}
+			%process_item(ItemId),
+			{jiffy:encode({[process_item(ItemId)]}), Req2, State}
         end.
 
