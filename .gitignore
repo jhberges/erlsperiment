@@ -1,2 +1,5 @@
 *.swp
+*.dump
 ebin
+.project
+.settings
